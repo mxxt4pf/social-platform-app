@@ -2,7 +2,7 @@ import { Button, Container, Menu, MenuItem } from "semantic-ui-react";
 
 export default function NavBar() {
   return (
-    <Menu inverted={true} fixed="top">
+    <Menu inverted={true} fixed="top" size="tiny">
         <Container>
             <MenuItem header>
             <img src="/logo.png" alt="logo"/>
@@ -14,7 +14,7 @@ export default function NavBar() {
             </MenuItem>
             <MenuItem position="right">
             <Button basic inverted content="Login"/>
-            <Button basic inverted content="SignUp" style={{marginLeft: "0.6em"}}/>
+            <Button basic inverted content="SignUp" style={{marginLeft: "0.4em"}}/>
             </MenuItem>
         </Container>
 

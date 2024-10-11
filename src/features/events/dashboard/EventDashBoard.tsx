@@ -1,16 +1,19 @@
 import { Grid } from "semantic-ui-react";
+import EventList from "./EventList";
 
 export default function EventDashBoard() {
   return (
-    <div>
+    <>
       <Grid>
-        <Grid.Column width={10}>
-          <h2>Left Column</h2>
+        <Grid.Column width={8}>
+          <EventList  />
         </Grid.Column>
+        </Grid>
+        <Grid>
         <Grid.Column width={6}>
-          <h2>Right Column</h2>
+          <h1>Right Column</h1>
         </Grid.Column>
       </Grid>
-    </div>
+    </>
   )
 }

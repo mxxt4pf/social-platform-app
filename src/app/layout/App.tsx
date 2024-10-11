@@ -8,7 +8,7 @@ function App() {
     <div>
       <NavBar />
       <Container className="main">
-      <EventDashBoard />
+        <EventDashBoard />
       </Container>
       
     </div>
