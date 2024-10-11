@@ -3,7 +3,12 @@ import EventList from "./EventList";
 import EventForm from "./forms/EventForm";
 import { sampleData } from "../../../app/api/sampleData";
 
-export default function EventDashBoard() {
+type Props = {
+  formOpen: boolean
+  setFormOpen: (value: boolean) => void
+}
+
+export default function EventDashBoard({formOpen, setFormOpen}: Props) {
   return (
     <Segment>
       <Grid>
@@ -11,7 +16,8 @@ export default function EventDashBoard() {
           <EventList events={sampleData}/>
         </Grid.Column>
         <Grid.Column width={6}>
-          <EventForm />
+          {formOpen && 
+          <EventForm setFormOpen = {setFormOpen}/>}
         </Grid.Column>
       </Grid>
     </Segment>
