@@ -1,7 +1,13 @@
+import EventDashBoard from "../../features/events/dashboard/EventDashBoard"
+
 function App() {
 
   return (
-    <h1>Welcome to Gamer's Social Platform</h1>
+    <div>
+      <h1>Welcome to Event's Social Platform</h1>
+      <EventDashBoard />
+    </div>
+    
   )
 }
 
