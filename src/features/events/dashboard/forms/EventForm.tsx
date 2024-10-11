@@ -1,10 +1,13 @@
 import { ChangeEvent, useState } from "react";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { AppEvent } from "../../../../app/types/event";
+import { createId } from "@paralleldrive/cuid2";
 
 type Props = {
-    setFormOpen: (value: boolean) => void
+    setFormOpen: (value: boolean) => void;
+    addEvent: (event: AppEvent) => void;
 }
-export default function EventForm({setFormOpen}: Props) {
+export default function EventForm({setFormOpen, addEvent}: Props) {
 
     const initialValues = {
         title: '',
@@ -17,7 +20,8 @@ export default function EventForm({setFormOpen}: Props) {
     const [values, setValues] = useState(initialValues);
 
     function onSubmit() {
-        console.log(values);
+        addEvent({...values, id: createId(), hostedBy:'Meet', attendees: [], hostPhotoURL: ''});
+        setFormOpen(false);
     }
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -79,3 +83,4 @@ export default function EventForm({setFormOpen}: Props) {
     </Segment>
   )
 }
+

@@ -17,6 +17,12 @@ export default function EventDashBoard({formOpen, setFormOpen}: Props) {
     setEvents(sampleData);
   }, [])
 
+  function addEvent(event: AppEvent) {
+    setEvents(prevState => {
+      return [...prevState, event]
+    })
+  }
+
   return (
       <Segment>
       <Grid>
@@ -26,7 +32,7 @@ export default function EventDashBoard({formOpen, setFormOpen}: Props) {
         
         <Grid.Column width={6}>
           {formOpen && 
-          <EventForm setFormOpen = {setFormOpen}/>}
+          <EventForm setFormOpen = {setFormOpen} addEvent={addEvent}/>}
         </Grid.Column>
       </Grid>
       </Segment>
