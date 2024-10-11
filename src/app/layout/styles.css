@@ -1,1 +1,9 @@
 @import url('semantic-ui-css/semantic.min.css');
+
+body {
+    background-color: lightblue;
+}
+
+.ui.fixed.menu {
+    background-image: linear-gradient(135deg, rgb(115, 59, 24) 0%, rgb(49, 174, 33) 55%, rgb(12, 172, 116) 90%);
+}
