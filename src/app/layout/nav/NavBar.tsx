@@ -1,22 +1,22 @@
+import { NavLink } from "react-router-dom";
 import { Button, Container, Menu, MenuItem, Segment } from "semantic-ui-react";
 
-type Props = {
-  setFormOpen: (value: boolean) => void;
-}
 
-export default function NavBar({setFormOpen}: Props) {
+
+export default function NavBar() {
   return (
     <Segment>
     <Menu inverted={true} fixed="top" size="tiny">
         <Container>
-            <MenuItem header size="tiny">
+            <MenuItem header as={NavLink} to='/' size="tiny">
             <img src="/logo.png" alt="logo"/>
             Events Social App
             </MenuItem>
-            <MenuItem name="Events"/>
+            <MenuItem name="Events" as={NavLink} to='/events'/>
             <MenuItem>
             <Button 
-              onClick={() => setFormOpen(true)}
+              as={NavLink}
+              to={'/createEvent'}
               floated="right" 
               positive={true} 
               inverted={true} 
