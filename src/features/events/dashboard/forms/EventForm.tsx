@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
 
 
@@ -75,7 +76,7 @@ export default function EventForm() {
              />
             </Form.Field>
             <Button type="submit" floated="right" positive content="Submit" size="tiny" />
-            <Button type="button" floated="right" positive content="Cancel" size="tiny" />
+            <Button as={Link} to='/events' type="button" floated="right" positive content="Cancel" size="tiny" />
         </Form>
     </Segment>
   )
