@@ -11,3 +11,13 @@ npm run dev
 
 To install React Router DOM for browser based web applications: 
 npm install react-router-dom
+
+Setting up Redux for state management of the application: 
+Using Redux Toolkit on NPM with a module bundler: 
+# NPM
+npm install @reduxjs/toolkit
+
+For using React Redux with my current react web app: 
+# NPM
+npm install react-redux
+
