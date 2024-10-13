@@ -4,5 +4,10 @@ The application lets user have access to the dashboard that displays created eve
 The frontend of the app is made using React with TypeScript having enhanced maintainability and reusability. 
 Firestore is used as the backed database for implementing CRUD operations and storing structured data for events, users and registrations. 
 
+
+Useful commands:
+To start the web application in VITE v5.4.8: 
+npm run dev
+
 To install React Router DOM for browser based web applications: 
 npm install react-router-dom
