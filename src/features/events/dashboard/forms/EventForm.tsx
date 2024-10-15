@@ -1,11 +1,14 @@
 import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
+import { useAppSelector } from "../../../../app/store/store";
 
 
 export default function EventForm() {
+    const {id} = useParams();
+    const event = useAppSelector(state => state.events.events.find(e => e.id === id));
 
-    const initialValues = {
+    const initialValues = event ?? {
         title: '',
         category: '',
         description: '',
@@ -29,7 +32,7 @@ export default function EventForm() {
 
   return (
     <Segment clearning>
-        <Header content={'Create Event'}/>
+        <Header content={event ? 'Update Event' : 'Create Event'}/>
         <Form onSubmit={onSubmit}>
             <Form.Field>
                 <input 
