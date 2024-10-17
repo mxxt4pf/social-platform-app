@@ -1,90 +1,71 @@
-import { ChangeEvent, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+//import { ChangeEvent, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Button, Form, Header, Segment } from "semantic-ui-react";
-import { useAppDispatch, useAppSelector } from "../../../../app/store/store";
-import { createId } from "@paralleldrive/cuid2";
-import { createEvent, updateEvent } from "../eventSlice";
+import { useAppSelector } from "../../../../app/store/store";
+//import { createId } from "@paralleldrive/cuid2";
+//import { createEvent, updateEvent } from "../eventSlice";
+import { FieldValues, useForm } from "react-hook-form";
 
 
 export default function EventForm() {
-    let {id} = useParams();
+    const { register, handleSubmit } = useForm();
+    const {id} = useParams();
     const event = useAppSelector(state => state.events.events.find(e => e.id === id));
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
+    //const dispatch = useAppDispatch();
+   // const navigate = useNavigate();
 
-    const initialValues = event ?? {
-        title: '',
-        category: '',
-        description: '',
-        city: '',
-        venue: '',
-        date: ''
-    }
-    const [values, setValues] = useState(initialValues);
-
-    function onSubmit() {
-        id = id ?? createId();
-        if(event) { 
-            dispatch(updateEvent({...event, ...values}))
-        } else {
-            dispatch(createEvent({...values, id: createId(), hostedBy:'Meet', attendees: [], hostPhotoURL: ''}));
-        }
-            navigate(`/events/${id}`);
-    }
-
-    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
-        const {name, value} = e.target
-        setValues ({...values, [name]: value})
+    function onSubmit(data: FieldValues) {
+        console.log(data);
+        // id = id ?? createId();
+        // if(event) { 
+        //     dispatch(updateEvent({...event, ...values}))
+        // } else {
+        //     dispatch(createEvent({...values, id: createId(), hostedBy:'Meet', attendees: [], hostPhotoURL: ''}));
+        // }
+        //     navigate(`/events/${id}`);
     }
 
   return (
     <Segment clearning>
         <Header content={event ? 'Update Event' : 'Create Event'}/>
-        <Form onSubmit={onSubmit}>
-            <Form.Field>
-                <input 
-                type="text" 
+        <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Input
                 placeholder='Event title' 
-                value={values.title}
-                name='title'
-                onChange={e => handleInputChange(e)}
-             />
-            </Form.Field>
-            <Form.Field>
-                <input type="text" placeholder='Category'
-                value={values.category}
-                name='category'
-                onChange={e => handleInputChange(e)}
-             />
-            </Form.Field>
-            <Form.Field>
-                <input type="text" placeholder='Description'
-                value={values.description}
-                name='description'
-                onChange={e => handleInputChange(e)}
-             />
-            </Form.Field>
-            <Form.Field>
-                <input type="text" placeholder='City'
-                value={values.city}
-                name='city'
-                onChange={e => handleInputChange(e)}
+                defaultValue={event?.title || ''}
+                {...register('title')}
             />
-            </Form.Field>
-            <Form.Field>
-                <input type="text" placeholder='Venue'
-                value={values.venue}
-                name='venue'
-                onChange={e => handleInputChange(e)}
-             />
-            </Form.Field>
-            <Form.Field>
-                <input type="date" placeholder='Date'
-                value={values.date}
-                name='date'
-                onChange={e => handleInputChange(e)}
-             />
-            </Form.Field>
+        
+            <Form.Input
+                placeholder='Category' 
+                defaultValue={event?.category || ''}
+                {...register('category')}
+            />
+            
+            <Form.Input
+                placeholder='Description' 
+                defaultValue={event?.description || ''}
+                {...register('description')}
+            />
+            
+            <Form.Input
+                placeholder='City' 
+                defaultValue={event?.city || ''}
+                {...register('city')}
+            />
+            
+            <Form.Input
+                placeholder='Venue' 
+                defaultValue={event?.venue || ''}
+                {...register('venue')}
+            />
+            
+            <Form.Input
+                type='date'
+                placeholder='Date' 
+                defaultValue={event?.date || ''}
+                {...register('date')}
+            />
+            
             <Button type="submit" floated="right" positive content="Submit" size="tiny" />
             <Button as={Link} to='/events' type="button" floated="right" positive content="Cancel" size="tiny" />
         </Form>
