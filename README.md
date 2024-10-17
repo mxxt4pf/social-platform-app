@@ -14,10 +14,10 @@ npm install react-router-dom
 
 Setting up Redux for state management of the application: 
 Using Redux Toolkit on NPM with a module bundler: 
-# NPM
 npm install @reduxjs/toolkit
 
 For using React Redux with my current react web app: 
-# NPM
 npm install react-redux
 
+Setting up forms in react hook form : 
+npm install react-hook-form
