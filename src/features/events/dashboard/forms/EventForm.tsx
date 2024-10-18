@@ -8,7 +8,7 @@ import { FieldValues, useForm } from "react-hook-form";
 
 
 export default function EventForm() {
-    const { register, handleSubmit, formState: {errors, isValid} } = useForm({
+    const { register, handleSubmit, formState: {errors, isValid, isSubmitting} } = useForm({
         mode: 'onTouched'
     });
     const {id} = useParams();
@@ -29,7 +29,7 @@ export default function EventForm() {
 
   return (
     <Segment clearning>
-        <Header content={event ? 'Update Event' : 'Create Event'}/>
+        <Header content='Event details' sub color="teal" />
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Input
                 placeholder='Event title' 
@@ -45,13 +45,14 @@ export default function EventForm() {
                 error={errors.category && errors.category.message}
             />
             
-            <Form.Input
+            <Form.TextArea
                 placeholder='Description' 
                 defaultValue={event?.description || ''}
                 {...register('description', {required: 'Description is required'})}
                 error={errors.description && errors.description.message}
             />
-            
+
+            <Header sub content='Location Details' color="teal" />
             <Form.Input
                 placeholder='City' 
                 defaultValue={event?.city || ''}
@@ -74,8 +75,12 @@ export default function EventForm() {
                 error={errors.date && errors.date.message}
             />
             
-            <Button disabled={!isValid} type="submit" floated="right" positive content="Submit" size="tiny" />
-            <Button as={Link} to='/events' type="button" floated="right" positive content="Cancel" size="tiny" />
+            <Button loading={isSubmitting}
+                    disabled={!isValid}     
+                    type="submit" floated="right" positive content="Submit" size="tiny" />
+            <Button disabled={isSubmitting}
+                    as={Link} to='/events' 
+                    type="button" floated="right" positive content="Cancel" size="tiny" />
         </Form>
     </Segment>
   )
