@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../app/store/store"
-import ModalWrapper from "../../app/common/modals/modalWrapper";
+import ModalWrapper from "../../app/common/modals/ModalWrapper";
 
 export default function TestModal() {
 

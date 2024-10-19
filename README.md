@@ -21,3 +21,6 @@ npm install react-redux
 
 Setting up forms in react hook form : 
 npm install react-hook-form
+
+For regex Expressions: 
+https://regexlib.com/
