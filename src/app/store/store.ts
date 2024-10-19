@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { testSlice } from "../../features/scratch/testSlice";
 import { eventSlice } from "../../features/events/dashboard/eventSlice";
+import { modalSlice } from "../common/modals/modalSlice";
 
 export const store = configureStore({
     reducer: {
         test: testSlice.reducer,
-        events: eventSlice.reducer
+        events: eventSlice.reducer,
+        modals: modalSlice.reducer
     }
 })
 
