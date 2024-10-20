@@ -3,7 +3,7 @@ import { Timestamp } from "firebase/firestore";
 export const sampleData = [
     {
         id: '1',
-        title: 'Trip to San Francisco',
+        title: 'Trip to San Francisco 200',
         date: Timestamp.fromDate(new Date(Date.now() + 30 * 86400000)),
         category: 'culture',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
