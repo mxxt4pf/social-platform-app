@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
 import { AppEvent } from "../../../app/types/event";
@@ -36,7 +35,7 @@ export default function EventListItem({event}: Props) {
         </Segment>
         <Segment secondary>
             <List horizontal>
-                {event.attendees.map((attendee: any) => (
+                {event.attendees.map(attendee => (
                     <EventListAttendee attendee={attendee}/>
                 ))}
             </List>
