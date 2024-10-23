@@ -24,3 +24,6 @@ npm install react-hook-form
 
 For regex Expressions: 
 https://regexlib.com/
+
+To install React-Toastify(Library for notification components for the App): 
+npm install --save react-toastify
