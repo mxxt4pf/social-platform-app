@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { collection, onSnapshot, query} from "firebase/firestore";
 import { db } from "../../../app/config/firebase";
 import { AppEvent } from "../../../app/types/event";
-import { setEvents } from "./eventSlice";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
+import { actions } from "./eventSlice";
 
 
 export default function EventDashBoard() {
-  const {events} = useAppSelector(state => state.events);
+  const {data: events} = useAppSelector(state => state.events);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ export default function EventDashBoard() {
         querySnapshot.forEach(doc => {
           evts.push({id: doc.id, ...doc.data()} as AppEvent)
         })
-        dispatch(setEvents(evts));
+        dispatch(actions.success(evts));
         setLoading(false);
       },
       error: err => {
