@@ -2,15 +2,29 @@ import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "sema
 import EventListAttendee from "./EventListAttendee";
 import { AppEvent } from "../../../app/types/event";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../../app/store/store";
-import { deleteEvent } from "./eventSlice";
+import { useState } from "react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../../app/config/firebase";
 
 type Props = {
     event: AppEvent;
 }
 
 export default function EventListItem({event}: Props) {
-    const dispatch = useAppDispatch();
+    const [loading, setLoading] = useState(false);
+
+    async function removeEvent() {
+        setLoading(true);
+        try {
+            await deleteDoc(doc(db, 'events', event.id));          
+        } catch(error: any) {
+            console.log(error);
+            console.log(error.message);            
+        } finally {
+            setLoading(false);
+        }
+    }
+
   return (
     <>
     <SegmentGroup>
@@ -42,7 +56,7 @@ export default function EventListItem({event}: Props) {
         </Segment>
         <Segment clearing>
             <span>{event.description}</span>
-            <Button onClick={() => dispatch(deleteEvent(event.id))} color='red' floated='right' content='Delete' />
+            <Button loading={loading} onClick={removeEvent} color='red' floated='right' content='Delete' />
             <Button as={Link} to={`/events/${event.id}`} color='blue' floated='right' content='View' />
         </Segment>
     </SegmentGroup>
