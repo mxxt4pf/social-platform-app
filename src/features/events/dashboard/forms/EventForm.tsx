@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import { AppEvent } from "../../../../app/types/event";
 import { collection, doc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { db } from "../../../../app/config/firebase";
+import { toast } from "react-toastify";
 
 
 export default function EventForm() {
@@ -19,7 +20,7 @@ export default function EventForm() {
     const navigate = useNavigate();
 
     async function updateEvent(data: AppEvent) {
-        if(!event) return null;
+        if(!event) return;
         const docRef = doc(db, 'events', event.id);
         await updateDoc(docRef, {
             ...data, 
@@ -36,7 +37,6 @@ export default function EventForm() {
             hostPhotoURL: '',
             date: Timestamp.fromDate(data.date as unknown as Date)
         })
-
         return newEventRef;
     }
 
@@ -47,9 +47,10 @@ export default function EventForm() {
                 navigate(`/events/${event.id}`);
             } else {
                 const ref = await createEvent(data);
-                navigate(`/events/${ref.id}`);
+                navigate(`/events/${ref.id}`)
             }
        } catch (error: any) {
+        toast.error(error.message);
         console.log(error.message);
         
        }
