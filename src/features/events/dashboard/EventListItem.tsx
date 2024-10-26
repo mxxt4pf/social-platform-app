@@ -1,15 +1,13 @@
-import { Button, Icon, Item, ItemGroup, List, Segment, SegmentGroup } from "semantic-ui-react";
+import { Button, Icon, Item, ItemGroup, Label, List, Segment, SegmentGroup } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
 import { AppEvent } from "../../../app/types/event";
 import { Link } from "react-router-dom";
-import { useFireStore } from "../../../app/hooks/firestore/useFirestore";
 
 type Props = {
     event: AppEvent;
 }
 
 export default function EventListItem({event}: Props) {
-   const {remove} = useFireStore('events');
 
   return (
     <>
@@ -23,6 +21,13 @@ export default function EventListItem({event}: Props) {
                         <Item.Description>
                             Hosted By {event.hostedBy}
                         </Item.Description>
+                        {event.isCancelled && (
+                            <Label 
+                                style={{top: '-40px'}}
+                                ribbon='right'
+                                color="red"
+                                content='This event has been cancelled'/>
+                        )}
                     </Item.Content>
                 </Item>
             </ItemGroup>
@@ -42,7 +47,6 @@ export default function EventListItem({event}: Props) {
         </Segment>
         <Segment clearing>
             <span>{event.description}</span>
-            <Button onClick={() => remove(event.id)} color='red' floated='right' content='Delete' />
             <Button as={Link} to={`/events/${event.id}`} color='blue' floated='right' content='View' />
         </Segment>
     </SegmentGroup>
