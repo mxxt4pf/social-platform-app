@@ -78,7 +78,7 @@ export default function EventForm() {
 
   return (
     <Segment clearning>
-        <Header content='Event details' sub color="teal" />
+        <Header content='Event details' sub color='teal' />
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Input
                 placeholder='Event title' 
