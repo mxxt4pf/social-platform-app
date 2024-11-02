@@ -11,7 +11,7 @@ export default function HomePage() {
         </Header>
         <Button size='huge' inverted as={Link} to="/events">
           Get Started
-          <Icon name="caret right" inverted />
+          <Icon name='caret right' inverted />
         </Button>
       </Container>
     </Segment>
